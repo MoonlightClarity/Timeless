@@ -65,4 +65,6 @@ Vendored upstream sources:
 
 The translation server retains its upstream AGPL license. CSL style files retain their upstream licenses; the bundled CSL locale is CC BY-SA 3.0 with CSL project attribution preserved. Available upstream revisions and provenance are recorded in `THIRD_PARTY_NOTICES.md`.
 
-No separate license grant has been added for the original Timeless code in this 1.0.0 release.
+## License
+
+Original Timeless code is licensed under the Apache License 2.0. See `LICENSE`. Third-party components retain their own upstream licenses as described above and in `THIRD_PARTY_NOTICES.md`.

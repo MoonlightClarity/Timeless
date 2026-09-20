@@ -40,4 +40,4 @@ The style files retain their upstream licensing and attribution.
 
 ## Timeless original code
 
-No separate license grant is included for the original Timeless code in the 1.0.0 release.
+Original Timeless code is licensed under the Apache License 2.0. See the repository root `LICENSE` file. This license does not replace or override the separate upstream licenses that apply to the vendored third-party components listed above.
