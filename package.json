@@ -1,17 +1,23 @@
 {
   "name": "timeless",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Local-first research editor with structured writing, source management, CSL citations, native XML, and direct PDF export.",
   "license": "Apache-2.0",
+  "main": "electron/main.cjs",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "desktop": "npm run build && electron .",
+    "prepare:translation": "npm --prefix vendor/translation-server ci --omit=dev",
+    "prepare:desktop": "node scripts/prepare-desktop-package.cjs",
+    "dist:win": "npm run build && npm run prepare:translation && npm run prepare:desktop && electron-builder --win portable --x64",
     "lint": "oxlint src",
     "test": "tsx --test tests/*.test.ts",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "devDependencies": {
     "@tiptap/extension-find-and-replace": "^3.31.3",
     "@tiptap/extension-highlight": "^3.31.3",
     "@tiptap/extension-image": "^3.31.3",
@@ -30,16 +36,57 @@
     "lucide-react": "^1.47.0",
     "pdfmake": "^0.3.11",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
-  },
-  "devDependencies": {
+    "react-dom": "^19.2.8",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
+    "electron": "^44.4.3",
+    "electron-builder": "^26.15.3",
     "oxlint": "^1.81.0",
     "tsx": "^4.23.13",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
+  },
+  "build": {
+    "appId": "io.github.moonlightclarity.timeless",
+    "productName": "Timeless",
+    "asar": true,
+    "compression": "normal",
+    "directories": {
+      "app": ".desktop-package",
+      "output": "release"
+    },
+    "extraResources": [
+      {
+        "from": "vendor/translation-server",
+        "to": "translation-server",
+        "filter": [
+          "**/*",
+          "!node_modules/**/*"
+        ]
+      },
+      {
+        "from": "vendor/translation-server/node_modules",
+        "to": "translation-server/node_modules",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "Timeless-${version}-Windows.exe"
+    }
   }
 }

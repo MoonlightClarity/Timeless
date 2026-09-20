@@ -2,9 +2,9 @@
 
 Research editor built around Tiptap with a generated outline, integrated source management, and CSL-based citations.
 
-**Current release: 1.0.0**
+**Current release: 1.0.1**
 
-Timeless is Windows-first in this release. The launcher requires Node.js and npm to be installed and available on `PATH`; dependencies are installed locally on first run.
+Timeless is Windows-first in this release. The portable Windows binary includes its own runtime and does not require Node.js or npm. The source launcher requires Node.js and npm to be installed and available on `PATH`.
 
 ## Features
 
@@ -37,7 +37,13 @@ Timeless is Windows-first in this release. The launcher requires Node.js and npm
 - **Autosave vs. file save** — the complete native XML document is persisted atomically in IndexedDB with a localStorage fallback, but browser autosave is tracked separately from the disk file. The status bar shows Autosaving/Autosaved/Autosave failed plus the external file name and whether it is Modified, On disk, or Downloaded. Full XML serialization is idle-debounced and kept out of the keystroke path; whole-document HTML, outline extraction, and word counting are likewise not regenerated synchronously for every typed character.
 - **Regression tests** — `npm test` covers citation/bibliography integrity, citation-safe H1 title extraction, APA student/professional front matter, strict current-format native XML round trips, special-character escaping, layout/orientation settings, semantic page breaks, PDF layout, writable file-handle reuse, malformed XML rejection, and Timeless-specific filenames.
 
-## Run
+## Windows binary
+
+Download `Timeless-1.0.1-Windows.exe` from the GitHub release and run it directly. It is a portable x64 Windows application: no installer, Node.js, npm, or separate browser is required. The application and metadata service remain local to the machine; the metadata service binds only to loopback.
+
+The binary is currently unsigned, so Windows SmartScreen may show an unrecognized-app warning.
+
+## Run from source
 
 ### Requirements
 
@@ -54,6 +60,8 @@ The launcher installs missing local dependencies, builds the production bundle, 
 The normal launcher uses the built production bundle rather than Vite's development server. Port 5173 is intentionally not used by Timeless.
 
 The translation service is loopback-only and only permits the Timeless origin from a browser.
+
+To build the portable Windows binary from source, run `npm run dist:win`.
 
 ## Upstream components
 

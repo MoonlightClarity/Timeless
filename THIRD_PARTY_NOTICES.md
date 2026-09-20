@@ -1,12 +1,14 @@
 # Third-Party Notices
 
-Timeless 1.0.0 vendors third-party components required for local metadata lookup and citation formatting. These components retain their upstream licenses and notices.
+Timeless vendors third-party components required for local metadata lookup and citation formatting. These components retain their upstream licenses and notices.
 
 ## Zotero Translation Server
 
 - Upstream: https://github.com/zotero/translation-server
 - Vendored revision: `3a9d17614896fc1fea73d7b880ea79273b605275`
 - License: GNU Affero General Public License, as preserved in `vendor/translation-server/COPYING`
+
+For Timeless 1.0.1, the vendored production dependency lock was refreshed within the Translation Server's declared semver ranges using npm's non-breaking audit fix. This updates Koa to 2.16.4 and related transitive packages without changing the vendored Translation Server source revision or its declared dependency ranges.
 
 Vendored Translation Server submodule revisions at release time:
 
