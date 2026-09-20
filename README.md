@@ -1,10 +1,16 @@
 # Timeless
 
-Research editor built around Tiptap with a generated outline, integrated source management, and CSL-based citations.
+Local-first writing and research environment designed to make recursive research easier to navigate.
 
 **Current release: 1.0.1**
 
 Timeless is Windows-first in this release. The portable Windows binary includes its own runtime and does not require Node.js or npm. The source launcher requires Node.js and npm to be installed and available on `PATH`.
+
+## Why Timeless
+
+Research rarely moves in a straight line. Writing exposes a gap, which sends you back to a source, note, citation, reference, or earlier section; what you find there changes the draft and starts the loop again. In conventional writing workflows, each pass through that loop creates navigation overhead and makes it easier to lose context.
+
+Timeless is designed around that recursion. Document structure, sources, per-source evidence notes, citations, references, and layout live in one local-first workspace so moving from writing back into research—and then back into the document—requires less context switching. The goal is not to automate the research process, but to make repeated movement through it easier to navigate.
 
 ## Features
 
