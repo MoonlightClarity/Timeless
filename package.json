@@ -1,0 +1,44 @@
+{
+  "name": "timeless",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint src",
+    "test": "tsx --test tests/*.test.ts",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tiptap/extension-find-and-replace": "^3.31.3",
+    "@tiptap/extension-highlight": "^3.31.3",
+    "@tiptap/extension-image": "^3.31.3",
+    "@tiptap/extension-list": "^3.31.3",
+    "@tiptap/extension-subscript": "^3.31.3",
+    "@tiptap/extension-superscript": "^3.31.3",
+    "@tiptap/extension-table": "^3.31.3",
+    "@tiptap/extension-text-align": "^3.31.3",
+    "@tiptap/extension-text-style": "^3.31.3",
+    "@tiptap/extension-typography": "^3.31.3",
+    "@tiptap/extensions": "^3.31.3",
+    "@tiptap/react": "^3.31.3",
+    "@tiptap/starter-kit": "^3.31.3",
+    "citeproc": "^2.4.63",
+    "html-to-pdfmake": "^2.5.34",
+    "lucide-react": "^1.47.0",
+    "pdfmake": "^0.3.11",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "tsx": "^4.23.13",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}

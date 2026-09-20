@@ -1,0 +1,11 @@
+html { background: #25221e; }
+body {
+  margin: 0;
+  background: #25221e;
+  color: #e7dfd1;
+}
+#root { min-height: 100vh; }
+
+::selection {
+  background: rgba(180, 135, 67, .34);
+}
