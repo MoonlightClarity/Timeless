@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
@@ -9,8 +10,16 @@ const metadataProxy = {
   },
 }
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  base: './',
   plugins: [react()],
+  resolve: mode === 'firefox'
+    ? {
+        alias: {
+          './metadataLookup': fileURLToPath(new URL('./src/metadataLookup.firefox.ts', import.meta.url)),
+        },
+      }
+    : undefined,
   server: {
     host: '127.0.0.1',
     port: 5174,
@@ -23,4 +32,4 @@ export default defineConfig({
     strictPort: true,
     proxy: metadataProxy,
   },
-})
+}))

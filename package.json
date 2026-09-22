@@ -15,7 +15,13 @@
     "dist:win": "npm run build && npm run prepare:translation && npm run prepare:desktop && electron-builder --win portable --x64",
     "lint": "oxlint src",
     "test": "tsx --test tests/*.test.ts",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "firefox:stage": "npm run build -- --mode firefox && node scripts/stage-firefox-release.mjs",
+    "firefox:lint": "npm run firefox:stage && npx --yes web-ext@10.6.0 lint --source-dir release/firefox",
+    "firefox:package": "npm run firefox:lint && npx --yes web-ext@10.6.0 build --source-dir release/firefox --artifacts-dir release --overwrite-dest",
+    "firefox:source": "node scripts/stage-firefox-source.mjs && powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-firefox-source.ps1",
+    "firefox:verify": "node scripts/verify-firefox-release.mjs",
+    "firefox:release": "npm run firefox:package && npm run firefox:source && npm run firefox:verify"
   },
   "devDependencies": {
     "@tiptap/extension-find-and-replace": "^3.31.3",

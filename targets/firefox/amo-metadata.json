@@ -1,0 +1,15 @@
+{
+  "summary": {
+    "en-US": "Local-first research and writing workspace with structured sources, citations, native XML documents, and direct PDF export."
+  },
+  "categories": [
+    "other"
+  ],
+  "version": {
+    "license": "Apache-2.0",
+    "approval_notes": "Timeless is a local-first Firefox desktop extension with no browsing or host permissions and no data collection. The Firefox edition uses the same React/TypeScript application source as the desktop/web build, but intentionally omits automatic source metadata lookup because the desktop implementation depends on a bundled loopback-only Node/Zotero translation service that is not shipped in the Firefox extension. Manual source entry, Evidence notes, CSL citations/references, native XML save/open, IndexedDB recovery, and client-side PDF export remain available. A reproducible source archive is uploaded with this submission; see MOZILLA_REVIEWER_BUILD.md for build instructions and validator-warning explanations. The packaged extension was smoke-tested on Firefox 156.0.1 with XML round-trip and PDF export checks.",
+    "release_notes": {
+      "en-US": "Initial Firefox release of Timeless 1.0.1."
+    }
+  }
+}

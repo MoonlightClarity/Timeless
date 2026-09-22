@@ -159,6 +159,7 @@ type OutlineItem = {
 }
 
 const DEFAULT_CONTENT = '<p></p>'
+const METADATA_LOOKUP_ENABLED = import.meta.env.MODE !== 'firefox'
 
 const OUTLINE_PAGE_SIZE = 80
 function sourceTypeIcon(itemType: string) {
@@ -3756,47 +3757,51 @@ function App() {
 
           {showSourceForm && (
             <section className="source-form manual-source-form">
-              <label>Lookup
-                <div className="lookup-field">
-                  <input
-                    value={sourceLookupQuery}
-                    placeholder="DOI, ISBN, PMID, arXiv, URL, title, or author"
-                    onChange={(e) => {
-                      setSourceLookupQuery(e.target.value)
-                      setSourceLookupChoices([])
-                      setSourceLookupFollowUp(undefined)
-                                      }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault()
-                        void lookupSource()
-                      }
-                    }}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => void lookupSource()}
-                    disabled={!sourceLookupQuery.trim() || sourceLookupPending}
-                  >
-                    <Search />
-                    {sourceLookupPending ? '…' : 'Metadata'}
-                  </button>
-                </div>
-              </label>
+              {METADATA_LOOKUP_ENABLED && (
+                <>
+                  <label>Lookup
+                    <div className="lookup-field">
+                      <input
+                        value={sourceLookupQuery}
+                        placeholder="DOI, ISBN, PMID, arXiv, URL, title, or author"
+                        onChange={(e) => {
+                          setSourceLookupQuery(e.target.value)
+                          setSourceLookupChoices([])
+                          setSourceLookupFollowUp(undefined)
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault()
+                            void lookupSource()
+                          }
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => void lookupSource()}
+                        disabled={!sourceLookupQuery.trim() || sourceLookupPending}
+                      >
+                        <Search />
+                        {sourceLookupPending ? '…' : 'Metadata'}
+                      </button>
+                    </div>
+                  </label>
 
-              {sourceLookupChoices.length > 0 && (
-                <div className="lookup-results" role="listbox" aria-label="Lookup results">
-                  {sourceLookupChoices.map((choice) => (
-                    <button
-                      key={choice.key}
-                      type="button"
-                      onClick={() => void chooseLookupSource(choice)}
-                      disabled={sourceLookupPending}
-                    >
-                      {choice.title}
-                    </button>
-                  ))}
-                </div>
+                  {sourceLookupChoices.length > 0 && (
+                    <div className="lookup-results" role="listbox" aria-label="Lookup results">
+                      {sourceLookupChoices.map((choice) => (
+                        <button
+                          key={choice.key}
+                          type="button"
+                          onClick={() => void chooseLookupSource(choice)}
+                          disabled={sourceLookupPending}
+                        >
+                          {choice.title}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
 
               <label>Item Type
